@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barangay Lost Pet Finder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loginScreen" class="login-screen" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="login-card">
+      <div class="login-logo">🐾</div>
+      <h2 id="loginTitle">Barangay Pet Finder</h2>
+      <p id="authDescription">Choose how you want to continue.</p>
+      <div class="auth-tabs" role="tablist" aria-label="Account options">
+        <button class="auth-tab active" id="userTab" type="button" role="tab" aria-selected="true" data-auth-tab="user">User Login</button>
+        <button class="auth-tab" id="createTab" type="button" role="tab" aria-selected="false" data-auth-tab="create">Create Account</button>
+        <button class="auth-tab" id="adminTab" type="button" role="tab" aria-selected="false" data-auth-tab="admin">Admin</button>
+      </div>
+
+      <form id="authForm" novalidate>
+        <div id="createAccountFields" hidden>
+          <label for="fullName">Full name</label>
+          <input id="fullName" autocomplete="name" maxlength="80" placeholder="">
+          <label for="createUsername">Username</label>
+          <input id="createUsername" autocomplete="username" maxlength="40" pattern="[A-Za-z0-9_]+">
+        </div>
+
+        <div id="loginFields">
+          <label id="usernameLabel" for="authUsername">Username</label>
+          <input id="authUsername" autocomplete="username" maxlength="40" required>
+          <label for="authPassword">Password</label>
+          <input id="authPassword" type="password" autocomplete="current-password" minlength="6" required>
+        </div>
+
+        <button id="authSubmit" class="primary-btn login-btn" type="submit">Log In</button>
+        <p id="loginMessage" class="login-message" role="alert"></p>
+      </form>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand"><span class="paw">🐾</span><div><h1>Barangay Pet Finder</h1><p>Helping lost pets find their way home</p></div></div>
+    <nav><a href="#home">Home</a><a href="#report">Report a Pet</a><a href="#reports">Pet Reports</a><a id="residentAccountsLink" href="#accounts" hidden>Resident Accounts</a><span id="accountName" class="account-name"></span><button id="logoutBtn" class="logout-btn" type="button">Log Out</button></nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">BARANGAY COMMUNITY SERVICE</span>
+        <h2>Let's bring every<br><span>pet back home.</span></h2>
+        <p>Report a missing or found pet in your barangay. Share helpful details so neighbors can work together.</p>
+        <a class="primary-btn" href="#report">Submit a Report</a>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a dog and cat">🐶 🐱<span>♥</span></div>
+    </section>
+
+    <section class="stats" aria-label="Report summary">
+      <div><strong id="totalCount">0</strong><span>Total Reports</span></div>
+      <div><strong id="lostCount">0</strong><span>Lost Pets</span></div>
+      <div><strong id="foundCount">0</strong><span>Found Pets</span></div>
+    </section>
+
+    <section class="content-grid" id="report">
+      <div class="form-card">
+        <div class="section-heading"><span class="eyebrow">COMMUNITY REPORT</span><h2>Submit a Pet Report</h2><p>Fill in the details below. Fields marked * are required.</p></div>
+        <form id="petForm">
+          <label for="reportType">Report type *</label>
+          <select id="reportType" required><option value="Lost">Lost Pet</option><option value="Found">Found Pet</option></select>
+
+          <div class="two-cols">
+            <div><label for="petName">Pet name</label><input id="petName" placeholder="e.g. Brownie"></div>
+            <div><label for="animal">Animal type *</label><select id="animal" required><option value="">Select animal</option><option>Dog</option><option>Cat</option><option>Bird</option><option>Other</option></select></div>
+          </div>
+          <div class="two-cols">
+            <div><label for="breed">Breed / description</label><input id="breed" placeholder="e.g. Aspin, white and brown"></div>
+            <div><label for="color">Color *</label><input id="color" required placeholder="e.g. Black"></div>
+          </div>
+          <label for="location">Last seen / found location *</label>
+          <input id="location" required placeholder="Street, purok, or landmark">
+          <div class="two-cols">
+            <div><label for="date">Date *</label><input id="date" type="date" required></div>
+            <div><label for="contact">Contact number *</label><input id="contact" type="tel" required placeholder="09XX XXX XXXX"></div>
+          </div>
+          <label for="details">Additional details</label>
+          <textarea id="details" rows="3" placeholder="Describe collar, behavior, or other identifying marks..."></textarea>
+          <button class="primary-btn submit-btn" type="submit">Post Report</button>
+          <p class="form-note" id="formMessage" role="status"></p>
+        </form>
+      </div>
+
+      <aside class="info-card">
+        <div class="info-icon">📢</div><h3>How it works</h3>
+        <ol><li><b>Submit a report</b><br>Provide the pet's details and location.</li><li><b>Neighbors can check</b><br>Browse the list of lost and found pets.</li><li><b>Contact the reporter</b><br>Use the contact number in the report to coordinate safely.</li></ol>
+        <div class="reminder"><b>Safety reminder</b><p>Meet in a public place and ask for proof of ownership before returning a pet.</p></div>
+      </aside>
+    </section>
+
+    <section class="reports-section" id="reports">
+      <div class="section-heading"><span class="eyebrow">COMMUNITY BOARD</span><h2>Recent Pet Reports</h2><p>Browse reports submitted by your community.</p></div>
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="Search by pet, color, or location...">
+        <select id="filterType"><option value="All">All reports</option><option value="Lost">Lost pets</option><option value="Found">Found pets</option></select>
+      </div>
+      <div id="petList" class="pet-list"></div>
+      <p id="emptyState" class="empty-state">No reports yet. Be the first to submit one!</p>
+    </section>
+
+    <section class="admin-accounts" id="accounts" hidden>
+      <div class="section-heading">
+        <span class="eyebrow">ADMINISTRATION</span>
+        <h2>Resident Accounts</h2>
+        <p>Create and manage accounts for residents who need help registering.</p>
+      </div>
+      <div class="account-grid">
+        <form class="form-card resident-create-form" id="residentCreateForm">
+          <h3>Create Resident Account</h3>
+          <label for="residentFullName">Resident full name *</label>
+          <input id="residentFullName" maxlength="80" required placeholder="Paolo Ryan Villafuerte">
+          <label for="residentUsername">Username *</label>
+          <input id="residentUsername" maxlength="40" required pattern="[A-Za-z0-9_]+" placeholder="PaoloRyan123">
+          <label for="residentPassword">Password *</label>
+          <input id="residentPassword" type="password" minlength="6" required placeholder="At least 6 characters">
+          <button class="primary-btn submit-btn" type="submit">Create Resident Account</button>
+          <p class="form-note" id="residentCreateMessage" role="status"></p>
+        </form>
+        <div class="form-card resident-list-card">
+          <h3>Registered Residents</h3>
+          <div id="residentAccountList" class="resident-account-list"></div>
+          <p id="noResidentAccounts" class="empty-state">No resident accounts yet.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>🐾 Barangay Pet Finder · A community project for responsible pet care</p><small>Demo version: reports are saved only in this browser.</small></footer>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,704 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@700;800;900&display=swap');
+
+/* ==========================================================================
+   1. VARIABLES & BASE
+   ========================================================================== */
+:root {
+  --green: #247a59;
+  --dark: #183b30;
+  --mint: #eaf5ef;
+  --orange: #f3a64a;
+  --ink: #24332d;
+  --muted: #718078;
+  --line: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fbfdfb;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+}
+
+main {
+  max-width: 1160px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+h2 {
+  font: 900 32px 'Nunito';
+  color: var(--dark);
+  margin: 8px 0;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  font-weight: 800;
+  color: var(--green);
+}
+
+/* ==========================================================================
+   2. BUTTONS
+   ========================================================================== */
+.primary-btn {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 20px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.primary-btn:hover {
+  background: #195d43;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.delete-btn {
+  background: none;
+  border: 0;
+  color: #a14b45;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 5px 0;
+  font-size: 12px;
+}
+
+.delete-account-btn {
+  border: 0;
+  border-radius: 8px;
+  background: #f7e7e5;
+  color: #943c36;
+  padding: 9px 10px;
+  font: 700 12px 'DM Sans';
+  cursor: pointer;
+}
+
+.delete-account-btn:hover {
+  background: #efd4d1;
+}
+
+/* ==========================================================================
+   3. FORM ELEMENTS
+   ========================================================================== */
+form label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 15px 0 7px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #dbe5de;
+  border-radius: 9px;
+  background: #fff;
+  font: 14px 'DM Sans';
+  color: var(--ink);
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px #247a5915;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-note {
+  font-size: 13px;
+  color: var(--green);
+  min-height: 16px;
+}
+
+/* ==========================================================================
+   4. LOGIN & AUTH
+   ========================================================================== */
+.login-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #dcece3, #f7f8e9);
+}
+
+.login-card {
+  width: min(390px, 100%);
+  padding: 34px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 18px 50px #183b3020;
+  text-align: center;
+}
+
+.login-card h2 {
+  font-size: 28px;
+  margin: 7px 0 5px;
+}
+
+.login-card > p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 5px 0 14px;
+}
+
+.login-card form {
+  text-align: left;
+}
+
+.login-logo {
+  font-size: 44px;
+  margin-bottom: 8px;
+}
+
+.login-message {
+  min-height: 18px;
+  color: #a14b45 !important;
+  font-weight: 700;
+  text-align: center;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 16px 0 4px;
+  padding: 5px;
+  background: #eef5f1;
+  border-radius: 10px;
+}
+
+.auth-tab {
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #607168;
+  font: 700 12px 'DM Sans';
+  padding: 9px 5px;
+  cursor: pointer;
+}
+
+.auth-tab.active {
+  background: white;
+  color: var(--green);
+  box-shadow: 0 2px 8px #183b3012;
+}
+
+/* ==========================================================================
+   5. TOPBAR & NAVIGATION
+   ========================================================================== */
+.topbar {
+  height: auto;
+  min-height: 78px;
+  padding: 14px max(5%, calc((100% - 1160px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: white;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand h1 {
+  font: 900 18px 'Nunito';
+  margin: 0;
+  color: var(--dark);
+}
+
+.brand p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.paw {
+  font-size: 32px;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: #42554b;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+nav a:hover {
+  color: var(--green);
+}
+
+.account-name {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--green);
+  padding: 5px 8px;
+  background: var(--mint);
+  border-radius: 20px;
+}
+
+.logout-btn {
+  border: 0;
+  background: none;
+  color: #42554b;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logout-btn:hover {
+  color: var(--green);
+}
+
+/* ==========================================================================
+   6. HERO
+   ========================================================================== */
+.hero {
+  margin: 38px 0 24px;
+  padding: 55px 7%;
+  border-radius: 24px;
+  background: linear-gradient(110deg, #e9f4ed, #f7f8e9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 310px;
+  overflow: hidden;
+}
+
+.hero h2 {
+  font-size: 46px;
+  line-height: 1.08;
+}
+
+.hero h2 span {
+  color: var(--green);
+}
+
+.hero-copy p {
+  max-width: 470px;
+  color: #61736a;
+  line-height: 1.7;
+  margin: 15px 0 25px;
+}
+
+.hero-art {
+  font-size: 100px;
+  background: #ffffffa8;
+  border-radius: 50%;
+  width: 240px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  letter-spacing: -18px;
+}
+
+.hero-art span {
+  position: absolute;
+  font-size: 36px;
+  color: #e58e65;
+  right: 24px;
+  top: 15px;
+}
+
+/* ==========================================================================
+   7. STATS
+   ========================================================================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 22px 0 45px;
+}
+
+.stats div {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 17px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stats strong {
+  font: 900 27px 'Nunito';
+  color: var(--green);
+}
+
+.stats span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   8. CONTENT GRID, FORM CARD & INFO CARD
+   ========================================================================== */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 0.85fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.form-card,
+.info-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 8px 28px #1c51300a;
+}
+
+.section-heading h2 {
+  font-size: 27px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 5px 0 22px;
+}
+
+.info-card {
+  background: var(--mint);
+  border: 0;
+  margin-top: 20px;
+  padding: 27px;
+}
+
+.info-icon {
+  font-size: 30px;
+}
+
+.info-card h3 {
+  font: 900 22px 'Nunito';
+  margin: 8px 0;
+  color: var(--dark);
+}
+
+.info-card ol {
+  padding-left: 20px;
+  margin: 20px 0;
+}
+
+.info-card li {
+  padding: 0 0 15px 5px;
+  color: #607168;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.info-card li b {
+  color: var(--dark);
+}
+
+.reminder {
+  background: #fff8e9;
+  border-radius: 12px;
+  padding: 15px;
+  color: #72552d;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.reminder p {
+  margin: 5px 0 0;
+}
+
+/* ==========================================================================
+   9. REPORTS & PET CARDS
+   ========================================================================== */
+.reports-section {
+  padding: 60px 0 65px;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.filters input {
+  flex: 1;
+}
+
+.filters select {
+  max-width: 180px;
+}
+
+.pet-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.pet-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 18px;
+}
+
+.pet-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.pet-card h3 {
+  font: 800 19px 'Nunito';
+  margin: 0;
+  color: var(--dark);
+}
+
+.pet-card p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #68776f;
+  margin: 10px 0;
+}
+
+.pet-card .contact {
+  font-weight: 700;
+  color: var(--green);
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 30px;
+  background: #fff0dc;
+  color: #9a5c16;
+}
+
+.tag.found {
+  background: #e5f4eb;
+  color: #247a59;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 28px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   10. ADMIN ACCOUNTS
+   ========================================================================== */
+.admin-accounts {
+  margin: 45px 0;
+  padding: 28px;
+  background: #f5f9f6;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.resident-create-form h3,
+.resident-list-card h3 {
+  font: 900 21px 'Nunito';
+  margin: 0 0 10px;
+  color: var(--dark);
+}
+
+.resident-account-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resident-account-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.resident-account-row div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.resident-account-row strong {
+  color: var(--dark);
+}
+
+.resident-account-row span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   11. FOOTER
+   ========================================================================== */
+footer {
+  text-align: center;
+  background: #edf5ef;
+  padding: 25px;
+  color: #53675c;
+  font-size: 13px;
+}
+
+footer p {
+  margin: 0 0 5px;
+  font-weight: 700;
+}
+
+footer small {
+  color: #87948c;
+}
+
+/* ==========================================================================
+   12. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 760px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 22px;
+  }
+
+  .topbar nav {
+    width: 100%;
+  }
+
+  nav {
+    gap: 17px;
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    padding: 35px 25px;
+    min-height: unset;
+  }
+
+  .hero h2 {
+    font-size: 36px;
+  }
+
+  .hero-art {
+    font-size: 65px;
+    width: 145px;
+    height: 145px;
+    letter-spacing: -12px;
+  }
+
+  .stats {
+    gap: 8px;
+  }
+
+  .stats div {
+    padding: 14px;
+  }
+
+  .stats strong {
+    font-size: 23px;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-card {
+    margin-top: 0;
+  }
+
+  .two-cols {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .pet-list {
+    grid-template-columns: 1fr;
+  }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resident-account-row {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 440px) {
+  .hero-art {
+    display: none;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters select {
+    max-width: none;
+  }
+
+  .stats span {
+    font-size: 11px;
+  }
+}
